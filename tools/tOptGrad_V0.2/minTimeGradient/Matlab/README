@@ -1,0 +1,76 @@
+Functions:
+    minTimeGradient  - The main function to call. This will call either minTimeGradientRIV.m 
+			or minTimeGradientRV.m depending on the type of solution chose. 
+    vdSpiralDesign.m - A utility function to design spiral 
+                        trajectories with variable densities.
+    examples.m -  contains examples of a line, a spiral, circular, rosette, and cone trajectories.
+
+The minTimeGradient function has the following inputs :
+ 
+  C       -   The Curve in k-space given in any parametrization [1/cm]
+              C should be inputed as an Nx2 or Nx3 trajectory.
+  RIV/RV   -  0 for rotationally invariant solution (magnitude constraints),
+               1 for rotationally variant solution (individual gradient/slew constraints).
+               Leave empty for default (0 for the rotationally invariant solution).
+  g0      -   Initial gradient amplitude (leave empty for g0 = 0)
+  gfin    -   Gradient value at the end of the trajectory. If not possible, 
+              the result would be the largest possible amplitude.
+              (Leave empty if you don't care to get maximum gradient.)
+  gmax    -   Maximum gradient [G/cm] (3.9 default)
+  smax    -   Maximum slew [G/Cm/ms]  (14.5 default)
+  T       -   Sampling time interval [ms] (4e-3 default)
+  ds      -   step size for ODE integration, leave empty to use default value
+  show    -   Show plots while optimizing (Warning: This will make the
+              process considerably slower!)
+  
+The return values are:
+  C       - reparametrized curve, sampled at T[ms]
+  time    - total time to get to the end
+  g       - gradiet waveform [G/cm]
+  s       - slew rate [G/cm/ms]
+  k       - exact k-space corresponding to gradient g (This function reparametrizes
+            C, then takes a derivative. Numerical errors in the derivative can lead to 
+            deviation.  
+  phi     - Geometry constraints on the amplitude vs. arclength
+  sta     - Solution for the forward ODE
+  stb     - Solution for the backward ODE
+
+
+
+Depending on what type of solution is chosen, it will run either the function 
+minTimeGradientRIV or minTimeGradientRV.
+
+Load an Nx2 or Nx3 matrix as the curve, C, into the workspace.
+An example trajectory:
+	C = exp(i*2*pi*linspace(0,1,512)')*10;
+	C = [real(C) imag(C) 0*C];
+
+Gradient and slew constraints can be defined, or default values can also be used. 
+The initial and final gradient values can also be selected, 
+or left empty for defaults. 
+
+Running 
+	[C, time, g, s, k, phi, sta, stb] =  minTimeGradient(C);
+
+will use all the default conditions. It will find the rotationally 
+invariant solution to the time optimal gradient design, 
+with Gmax = 4 G/cm and Smax = 15 G/cm/ms.
+
+Running
+    [C, time, g, s, k, phi, sta, stb] =  minTimeGradient(C, 1, 0, 0, 4, 15, 4e-3, 0.01);
+
+will find the rotationally variant solution to the time optimal gradient design. 
+The initial and final gradient amplitudes are set to 0, using a time interval
+of 4e-3 and the a step size of 0.01 for the integration.
+
+Running
+    [C, time, g, s, k, phi, sta, stb] =  minTimeGradient(C, 1);
+
+will return the rotationally variant solution using all the default 
+values for Gmax, Smax, g0, gfin, T, and ds.
+
+Running
+        [C, time, g, s, k, phi, sta, stb] =  minTimeGradient(C, 1, 0, [], 4, 15, 4e-3, []);
+
+will return the rotationally variant solution using default values for gfin and ds.
+

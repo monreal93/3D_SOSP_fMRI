@@ -1,0 +1,62 @@
+This function finds the solution to the time optimal gradient waveform designs. 
+Given a k-space trajectory C = [x y z], gradient and slew constraints,
+This function will return a new parameterization that will meet these constraints
+while getting from one point to the other in minimum time.
+The constraints can be either magnitude (|g| < Gmax and |s| < Smax) or as a set of
+individual for each direction (|gx|, |gy|, |gz| < Gmax and |sx|, |sy|, |sz| < Smax).
+It will thus either call the function minTimeGradientRIV or
+minTimeGradientRV based on the specified solution type. These functions, along with any other functions used, are defined in mtg_functions.c
+
+The minTimeGradient function has the following inputs :
+
+ input_file  -  A file containing the curve in k-space given in any parameterization [1/cm].
+             Accepts a 3D trajectories as a 3D arrays C = [x, y, z].
+ output_file - A file for the outputs to be printed to.
+ RIV/RV   -  0 for rotationally invariant solution (magnitude constraints),
+             1 for rotationally variant solution (individual gradient/slew 
+             constraints for individual directions in k-space).
+             Default is 0 for the rotationally invariant solution.
+ g0       -  Initial gradient amplitude.
+ gfin     -  Gradient value at the end of the trajectory.
+             If given value is not possible
+             the result would be the largest possible amplitude.
+             Enter -1 to use default.
+ gmax     -  Maximum gradient [G/cm] (4 default)
+ smax     -  Maximum slew [G/cm/ms] (15 default)
+ T        -  Sampling time intervale [ms] (4e-3 default)
+ ds       -  step size for ODE integration, enter -1 for default value.
+
+The return values are:
+
+	[Cx Cy Cz]	-		reparameterized curve, sampled at T[ms]
+	[gx gy gz]	-		gradient waveforms [G/cm]
+	[sx sy sz]	-		slew rate [G/cm/ms]
+	[kx ky kz]	-		exact k-space corresponding to gradient g
+	sta		-		Solution for the forward ODE
+	stb		-		Solution for the backward ODE
+	phi		-		Geometry constrains on amplitude vs. arclength
+	time		-		time array to traverse trajectory (total time is the final entry in this array)
+
+Each of these are printed into the output file (in separate columns - i.e. the 3 columns are Cx, Cy, and Cz, then gx, gy, and gz, etc.)
+
+Depending on what type of solution is chosen, it will run either the function 
+minTimeGradientRIV or minTimeGradientRV defined in mtg_functions.c
+
+Gradient and slew constraints can be defined, or default values can also be used. 
+The final gradient values can also be selected, or entered as -1 to use default. 
+
+Examples :
+
+	minTimeGradient C_in.dat out.dat 
+		This will find the rotationally invariant solution and print to the file C_out.dat
+	minTimeGradient C_in.dat out.dat 1
+		This will determine the rotationally variant solution. All other input values are unspecified so defaults are used.
+	minTimeGradient C_in.dat out.dat 1 0 -1 4 15 4e-3
+		This will find the rotationally variant solution, using the default value for gfin.
+	minTimeGradient C_in.dat out.dat 1 0 0 4 15 4e-3 -1
+		This will now enforce gfin = 0. ds = -1 is inputed so the default value is used in the ODE integrator. 
+
+All the subfunctions called are defined in mtg_functions. 
+All interpolations are done using cubic spline interpolations.
+These are defined in files spline.c and cmath.h from 
+the CMATH numerical methods package Copyright (c) 1989 Design Software. (see http://www.mech.uq.edu.au/staff/jacobs/nm_lib/index.html)
