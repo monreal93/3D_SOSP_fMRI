@@ -488,7 +488,7 @@ ks_traj = create_ks_trajectory(seq,adc,params);
 params = prepare_add_parameters(seq,ks_traj,gx,rf,adc,te0,te1,tr0,tr1,params);
 
 %% Check accoustic resonance frequencies, Des script
-check_accoustic_fq_pns(seq,params,grad_file)
+check_accoustic_fq_pns(seq,params)
 
 %% Set definitions
 seq.setDefinition('MaxAdcSegmentLength',params.gen.adc_split);
