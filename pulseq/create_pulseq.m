@@ -1,6 +1,6 @@
 clear all; clc
 % Change directory to path where sosp_vaso git has been cloned
-cd /home/amonreal/Documents/PhD/PhD_2024/sosp_vaso/
+cd /home/amonreal/Documents/PhD/PhD_2023/AROMA/publications/sosp_vaso/github/3D_SOSP_fMRI/
 addpath(genpath("./pulseq/functions"))
 
 %% Adding paths 
@@ -100,12 +100,12 @@ end
 % TR-FOCI
 if params.gen.seq == 1
     [B1_foci,phase,rf_complex,Gz_foci,fa] = tr_foci(params);
-    rf_foci = mr.makeArbitraryRf(rf_complex,fa*pi/180, 'system', lims);%, 'Delay',2e-4);
+    rf_foci = mr.makeArbitraryRf(rf_complex,fa*pi/180, 'system', params.gen.lims);%, 'Delay',2e-4);
 end
 
 % MT pulse
 if params.gen.seq == 2
-    MT = mr.makeGaussPulse(params.mt.alpha*pi/180,lims,'Duration',params.mt.trf,'FreqOffset',params.mt.delta);
+    MT = mr.makeGaussPulse(params.mt.alpha*pi/180,params.gen.lims,'Duration',params.mt.trf,'FreqOffset',params.mt.delta);
 end
 
 % Fat sat
@@ -171,9 +171,9 @@ if params.gen.skope ~= 0
     sk_no_rf_delay = mr.calcDuration(gz_fs)+mr.calcDuration(rf0(1))+mr.calcDuration(gzReph(1));
     sk_no_rf_delay = mr.makeDelay(sk_no_rf_delay);
     if params.gen.field_strength == 7i
-        skope_trig = mr.makeDigitalOutputPulse('ext1','duration',10e-6,'system',lims);  % Skope trigger
+        skope_trig = mr.makeDigitalOutputPulse('ext1','duration',10e-6,'system',params.gen.lims);  % Skope trigger
     else
-        skope_trig = mr.makeDigitalOutputPulse('osc0','duration',10e-6,'system',lims);  % Skope trigger
+        skope_trig = mr.makeDigitalOutputPulse('osc0','duration',10e-6,'system',params.gen.lims);  % Skope trigger
     end   
     
 end
@@ -201,7 +201,7 @@ no_blip_delay = mr.makeDelay(mr.calcDuration(gz_blips(1)));
 % fs_delay = mr.makeDelay(mr.calcDuration(rf_fs)+mr.calcDuration(gx_fs));
 
 % External trigger for fMRI
-ext_trig = mr.makeDigitalOutputPulse('ext1','duration',10e-6,'system',lims);        % External trigger
+ext_trig = mr.makeDigitalOutputPulse('ext1','duration',10e-6,'system',params.gen.lims);        % External trigger
 dummy_delay = mr.makeDelay(10e-3);                                                  % Delay to use as dummy anywhere
 
 % Save partitions and segments in a new variable
