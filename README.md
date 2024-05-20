@@ -1,7 +1,7 @@
 # 3D_SOSP_fMRI
 This repository houses the sequence and anaylis scripts for the paper "Combining the benefits of 3D acquisitions and spiral readouts for VASO fMRI at UHF"
 
-PULSEQ SEQUENCE GENERATION:
+# PULSEQ SEQUENCE GENERATION:
 Intial configuration steps:
 1) Clone this repository
    git clone ...
@@ -24,7 +24,7 @@ To generate a sequence run the file ./pulseq/create_pulseq.m , different paramet
 
 After the script runs several files will be written into the folder ./acq
 
-DATA RECONSTRUCTION:
+# DATA RECONSTRUCTION:
 Initial configuration steps:
 1) If Julia is not installed in your system, follow the instructions to install it: https://julialang.org/downloads/
 2) 
