@@ -4,18 +4,19 @@ cd /home/amonreal/Documents/PhD/PhD_2024/sosp_vaso/
 addpath(genpath("./pulseq/functions"))
 
 %% Adding paths 
-addpath(genpath("/home/amonreal/Documents/PhD/tools/pulseq_1.4.1/"))                                    % Pulseq toolbox
-addpath(genpath("/home/amonreal/Documents/PhD/tools/tOptGrad_V0.2/minTimeGradient/mex_interface/"))     % Minminue time gradieng Lusitg
-addpath(genpath("/home/amonreal/Documents/PhD/tools/pns_prediction/"))                                  % PNS prediction
-addpath(genpath("/home/amonreal/Documents/PhD/tools/check_grad_idea_Des/"))                             % Check Forbidden Fq
+addpath(genpath("./pulseq/functions"))                                          % Functions to create pulseq sequence
+addpath(genpath("./tools/tOptGrad_V0.2/minTimeGradient/mex_interface/"))        % Minminue time gradieng Lusitg
+addpath(genpath("./tools/check_grad_idea_Des/"))                                % Check Forbidden Fq
+addpath(genpath("./tools/pulseq/"))                                             % Pulseq toolbox
+addpath(genpath("./tools/pns_prediction/"))                                     % PNS prediction
 warning('OFF', 'mr:restoreShape')
 
 %% Define parameters
-folder_name = 'tmp';        % Day I am scanning
+folder_name = 'tmp';                % Folder will be created in ./data
 seq_name = 'sample';                % use sv/abc/sb_n (n for the diff scans at each day)
 params.gen.seq = 4;                 % 1-VASO 2-ABC 3-Multi-Echo 4-BOLD
-params.gen.field_strength = 7;      % Field Strength (7=7T,7i=7T-impuse_grad,9=9.4T,11=11.7T)
-params.gen.plot = 0;                % Plot frequencies, PNS, etc...
+params.gen.field_strength = 7;      % Field Strength (7=7T(SC72),7i=7T(impuse_grad),9=9.4T(AC84),11=11.7T)
+params.gen.pns_check = 0;           % PNS check, .acs files to be added in ./tools/pns_check/grad_files
 
 % General parameters
 params.gen.fov = [192 192 24].*1e-3;% FOV
@@ -81,23 +82,7 @@ params.vaso.v_b_delay = 10e-3;      % VASO-BOLD delay (10e-3)
 params.vaso.b_f_delay = 5e-3;       % BOLD-FOCI delay (5e-3)
 
 %% Set system limits
-if params.gen.field_strength == 7
-    % 7T, SC72 gradient
-    lims = mr.opts('MaxGrad',65,'GradUnit','mT/m',...
-        'MaxSlew',200,'SlewUnit','T/m/s',...
-        'rfRingdownTime', 20e-6,'rfDeadtime', 100e-6,'adcDeadTime', 10e-6, 'B0',6.98);  % To read it in VM I need rfDeadtime = 180e-6, 100e-6 for scanner
-elseif params.gen.field_strength == 9
-    % 9.4T, AC84 gradient
-    lims = mr.opts('MaxGrad',80,'GradUnit','mT/m',...
-        'MaxSlew',333,'SlewUnit','T/m/s',...
-        'rfRingdownTime', 20e-6,'rfDeadtime', 150e-6,'adcDeadTime', 10e-6, 'B0',9.38); 
-elseif params.gen.field_strength == 7i
-    % 7T, impuse gradient
-    lims = mr.opts('MaxGrad',198,'GradUnit','mT/m',...
-        'MaxSlew',910,'SlewUnit','T/m/s',...
-        'rfRingdownTime', 20e-6,'rfDeadtime', 100e-6,'adcDeadTime', 10e-6, 'B0',6.98); 
-end
-params.gen.lims = lims;
+params = prepare_system_limits(params);
 
 % Set gradient files for PNS check
 if params.gen.field_strength == 7
@@ -548,3 +533,4 @@ else
     save(strcat(namestr,'_ks_traj_nom.mat'),'ks_traj')
 end
 save(strcat(namestr,'_params.mat'),'params')
+seq.plot()

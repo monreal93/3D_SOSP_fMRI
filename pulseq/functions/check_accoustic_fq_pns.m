@@ -1,4 +1,4 @@
-function check_accoustic_fq_pns(seq,params, grad_file)
+function check_accoustic_fq_pns(seq,params)
     lims = params.gen.lims;
     % t     time of samples in microseconds, y     sample values, Fs    sampling rate in Hz
     Fs = 1/lims.adcRasterTime/100;
@@ -22,8 +22,8 @@ function check_accoustic_fq_pns(seq,params, grad_file)
         warndlg(sprintf('########################################## \n Sequence failed resonance test, if you dont feel confident running this sequence, modify Spiral/EPI gradient Amplitde and Slew Rate and try again \n##########################################'))
     end
 
-    if ~isempty(grad_file)
-        seq.calcPNS(grad_file);
+    if ~isempty(params.gen.grad_file)
+        seq.calcPNS(params.gen.grad_file);
     end
     
 end
