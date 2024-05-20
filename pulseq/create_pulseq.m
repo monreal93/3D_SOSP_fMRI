@@ -498,6 +498,7 @@ seq.setDefinition('baseResolution', 64) ;
 
 %% Saving files
 % Check if folder exist, if no it creates it
+mkdir ./data/
 if exist(sprintf('./data/%s',folder_name)) == 0
     tmp = sprintf('./data/%s',folder_name);
     system(sprintf('mkdir %s',tmp));
