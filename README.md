@@ -24,8 +24,12 @@ To generate a sequence run the file ./pulseq/create_pulseq.m , different paramet
 
 After the script runs several files will be written into the folder ./acq
 
-# DATA RECONSTRUCTION:
+# RECONSTRUCTION:
+## Pre-requisits:
+1) ISMRMD https://github.com/ismrmrd/ismrmrd
+2) Vendor raw format to ISMRMRD converter
+   
 Initial configuration steps:
-1) If Julia is not installed in your system, follow the instructions to install it: https://julialang.org/downloads/
+1) If Julia is not installed on your system, follow the instructions to install it: https://julialang.org/downloads/
 2) 
   
