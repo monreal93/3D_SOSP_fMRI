@@ -12,8 +12,8 @@ addpath(genpath("./tools/pns_prediction/"))                                     
 warning('OFF', 'mr:restoreShape')
 
 %% Define parameters
-folder_name = 'tmp';                % Folder will be created in ./data
-seq_name = 'sample';                % use sv/abc/sb_n (n for the diff scans at each day)
+folder_name = '05212024_safe_spirals';                % Folder will be created in ./data
+seq_name = 'sb_01';                % use sv/abc/sb_n (n for the diff scans at each day)
 params.gen.seq = 4;                 % 1-VASO 2-ABC 3-Multi-Echo 4-BOLD
 params.gen.field_strength = 7;      % Field Strength (7=7T(SC72),7i=7T(impuse_grad),9=9.4T(AC84),11=11.7T)
 params.gen.pns_check = 0;           % PNS check, .acs files to be added in ./tools/pns_check/grad_files
@@ -32,7 +32,7 @@ params.gen.kz = 1;                  % Acceleration in Kz
 params.gen.pf = 1;                  % Partial fourier in Kz
 params.gen.fat_sat = 0;             % Fat saturation (1=yes,0=no)
 params.gen.fs_angle = 0;            % Fat sat angle (0=default)
-params.gen.skope = 0;               % Add skope sync scan and triggers, 0=N0, 1=sep scan, 2=concurrent(center partition), 3=1&2
+params.gen.skope = 1;               % Add skope sync scan and triggers, 0=N0, 1=sep scan, 2=concurrent(center partition), 3=1&2
 params.gen.skope_sync = 0;          % Skope pre-scans, only added in skope seq
 params.gen.dork = 0;                % extra adc's for DORK correction (WIP)
 params.gen.kz_enc = 0;              % k-space partition encoding 0=linear,1=center-out For Cartesian now only linear encoding

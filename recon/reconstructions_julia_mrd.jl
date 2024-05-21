@@ -1,6 +1,6 @@
 using Pkg
 
-cd("/usr/share/5T4/Alejandro/sosp_vaso/")
+cd("/usr/share/sosp_vaso/")
 Pkg.activate("./recon/")
 
 using Revise
@@ -30,9 +30,9 @@ include("./functions/fn_motionCorrection.jl")
 
 params = Dict{Symbol, Any}()
 params[:do_pi_recon] = true             # Perform PI reconstruction or direct recon
-params[:do_b0_corr] = true 
-params[:do_k0_corr] = true              # Perform K0 demodulation of raw data, only works with sk trajectory
-params[:do_rDORK_corr] = true          
+params[:do_b0_corr] = false 
+params[:do_k0_corr] = false              # Perform K0 demodulation of raw data, only works with sk trajectory
+params[:do_rDORK_corr] = false          
 params[:do_t2s_corr] = false
 params[:is2d] = false
 params[:rep_recon] = 0                     # Range of rep to recon, 0 for all rep, ex. (5:5)- rep 5 
@@ -42,14 +42,12 @@ params[:mcorr] = ""           # Motion correction with navigators "_mCorr"
 params[:recon_order] =  1                  # Higher order recon (2,3)
 
 # Some parameters3
-params[:scan] = "sv_71"            # For now: if multipe echos, include _e1.. _e2..
-params[:scan_b0] = "s71"           # Name of the ME-GRE to use for CS and B0map
-params[:directory] = "09192023_sv_abc_paper"        # directory where the data is stored
+params[:scan] = "sample"            # For now: if multipe echos, include _e1.. _e2..
+params[:scan_b0] = "sample_fieldmap"           # Name of the ME-GRE to use for CS and B0map
+params[:directory] = "sample"        # directory where the data is stored
 
 path_tmp = string(pwd(),'/')
 params[:path] = string(path_tmp,"data/",params[:directory])
-
-@infiltrate
 
 # Some constraints
 if params[:recon_order] > 1; params[:traj_type] = "sk"; end
