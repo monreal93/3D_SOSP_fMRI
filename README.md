@@ -28,8 +28,15 @@ After the script runs several files will be written into the folder ./acq
 ## Pre-requisits:
 1) ISMRMD https://github.com/ismrmrd/ismrmrd
 2) Vendor raw format to ISMRMRD converter
+3) VSCode with remote explorer and julia extensions
    
 Initial configuration steps:
-1) If Julia is not installed on your system, follow the instructions to install it: https://julialang.org/downloads/
-2) 
+1) Get Julia docker image docker pull julia and create a container
+   sudo docker  run -t -d -P -v "path_to_folder":/usr/share/sosp_vaso/ --name julia_mri_recon julia
+3) I advise using VS code, follow the instructions to connect to a docker container from VSCode
+   https://code.visualstudio.com/docs/devcontainers/containers
+   install julia extension in container
+5) Once attached to contaier, open folder /usr/share/sosp_vaso
+6) Open the julia REPL CTRL+SHIFT+P Start julia REPL
+7) 
   
