@@ -66,9 +66,6 @@ function CalculateOffresonanceMap(recon_b0,SensitivityMap,EchoTimes::Vector{Floa
 
     finit = b0init(ydata, echotime; SensitivityMap)
 
-    @info ("Stop... B0 map...")
-    @infiltrate
-
     # Original "Low smoothing":
     fmap_run = (niter, precon, track; kwargs...) ->
         b0map(yik_scale, echotime; finit, smap, mask,
@@ -107,8 +104,6 @@ function CalculateOffresonanceMap(recon_b0,SensitivityMap,EchoTimes::Vector{Floa
     b0 = 1im.*b0
     b0 = convert(Array{ComplexF32,3},b0)
 
-    @info ("Stop... B0 map...")
-    @infiltrate
 
     return b0
 end

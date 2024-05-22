@@ -2,7 +2,7 @@
 
 julia_version = "1.8.5"
 manifest_format = "2.0"
-project_hash = "105e856187a3d1bbdfbc89a75775dec434a32b2f"
+project_hash = "9c05a36c306f854ce1ca71a53775de60ca466b3c"
 
 [[deps.AMD]]
 deps = ["LinearAlgebra", "SparseArrays", "SuiteSparse_jll"]
@@ -1019,10 +1019,10 @@ uuid = "5a6f062f-bf45-497d-b654-ad17aae2a530"
 version = "0.1.6"
 
 [[deps.MRIOperators]]
-deps = ["Distributions", "FLoops", "LinearAlgebra", "LowRankApprox", "MRIBase", "NFFT", "Printf", "Reexport", "SparsityOperators", "StatsBase"]
-git-tree-sha1 = "1579edabffc9940add7d4cdb741020f47ef9949a"
+deps = ["Distributions", "FLoops", "Infiltrator", "LinearAlgebra", "LowRankApprox", "MRIBase", "NFFT", "Printf", "Reexport", "SparsityOperators", "SphericalHarmonicExpansions", "StatsBase"]
+path = "/root/.julia/dev/MRIReco/MRIOperators"
 uuid = "fb1137e3-90a6-46ce-a672-6e1e53d120f2"
-version = "0.1.3"
+version = "0.1.2"
 
 [[deps.MRIReco]]
 deps = ["AxisArrays", "FLoops", "Infiltrator", "LinearAlgebra", "MRIBase", "MRIOperators", "PrecompileTools", "ProgressMeter", "Random", "Reexport", "RegularizedLeastSquares", "Unitful"]

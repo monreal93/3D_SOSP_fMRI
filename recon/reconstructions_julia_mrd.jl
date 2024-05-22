@@ -28,7 +28,7 @@ include("./functions/fn_CalculateSensitivityOffresonanceMaps.jl")
 
 params = Dict{Symbol, Any}()
 params[:do_pi_recon] = true             # Perform PI reconstruction or direct recon
-params[:do_b0_corr] = false 
+params[:do_b0_corr] = true 
 params[:do_k0_corr] = false              # Perform K0 demodulation of raw data, only works with sk trajectory
 params[:do_rDORK_corr] = false          
 params[:do_t2s_corr] = false
