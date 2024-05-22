@@ -66,6 +66,7 @@ This repository houses the sequence and analysis scripts for the paper **Combini
    ```
 8) Add modified version of MRIReco.jl
    ```julia
+   ]
    dev https://github.com/monreal93/MRIReco_amm.git
    dev MRIOperators
    ```
