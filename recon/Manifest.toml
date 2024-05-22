@@ -2,7 +2,7 @@
 
 julia_version = "1.8.5"
 manifest_format = "2.0"
-project_hash = "45f3a7c88756e76ca09cb3b2539cfd1fbf65d226"
+project_hash = "42c8f24e05634cfedcd5243fbd30811dead93093"
 
 [[deps.AMD]]
 deps = ["LinearAlgebra", "SparseArrays", "SuiteSparse_jll"]
@@ -27,6 +27,12 @@ deps = ["LinearAlgebra", "Requires"]
 git-tree-sha1 = "cde29ddf7e5726c9fb511f340244ea3481267608"
 uuid = "79e6a3ab-5dfb-504d-930d-738a2a938a0e"
 version = "3.7.2"
+
+[[deps.AliasTables]]
+deps = ["PtrArrays", "Random"]
+git-tree-sha1 = "9876e1e164b144ca45e9e3198d0b689cadfed9ff"
+uuid = "66dad0bd-aa9a-41b7-9441-69ab47430ed8"
+version = "1.1.3"
 
 [[deps.ArgCheck]]
 git-tree-sha1 = "a3a402a35a2f7e0b87828ccabbd5ebfbebe356b4"
@@ -354,10 +360,10 @@ deps = ["Random", "Serialization", "Sockets"]
 uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 
 [[deps.Distributions]]
-deps = ["ChainRulesCore", "DensityInterface", "FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SpecialFunctions", "Statistics", "StatsAPI", "StatsBase", "StatsFuns", "Test"]
-git-tree-sha1 = "9242eec9b7e2e14f9952e8ea1c7e31a50501d587"
+deps = ["AliasTables", "ChainRulesCore", "DensityInterface", "FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SpecialFunctions", "Statistics", "StatsAPI", "StatsBase", "StatsFuns", "Test"]
+git-tree-sha1 = "22c595ca4146c07b16bcf9c8bea86f731f7109d2"
 uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
-version = "0.25.104"
+version = "0.25.108"
 
 [[deps.DocStringExtensions]]
 deps = ["LibGit2"]
@@ -716,9 +722,9 @@ version = "1.8.0"
 
 [[deps.IterativeSolvers]]
 deps = ["LinearAlgebra", "Printf", "Random", "RecipesBase", "SparseArrays"]
-git-tree-sha1 = "b435d190ef8369cf4d79cc9dd5fba88ba0165307"
+git-tree-sha1 = "59545b0a2b27208b0650df0a46b8e3019f85055b"
 uuid = "42fd0dbc-a981-5370-80f2-aaf504508153"
-version = "0.9.3"
+version = "0.9.4"
 
 [[deps.IteratorInterfaceExtensions]]
 git-tree-sha1 = "a3f24677c21f5bbe9d2a714f95dcd58337fb2856"
@@ -772,12 +778,6 @@ deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
 git-tree-sha1 = "f6250b16881adf048549549fba48b1161acdac8c"
 uuid = "c1c5ebd0-6772-5130-a774-d5fcae4a789d"
 version = "3.100.1+0"
-
-[[deps.LDLFactorizations]]
-deps = ["AMD", "LinearAlgebra", "SparseArrays", "Test"]
-git-tree-sha1 = "70f582b446a1c3ad82cf87e62b878668beef9d13"
-uuid = "40e66cde-538c-5869-a4ad-c39174c6795b"
-version = "0.10.1"
 
 [[deps.LERC_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -894,12 +894,6 @@ git-tree-sha1 = "7f3efec06033682db852f8b3bc3c1d2b0a0ab066"
 uuid = "38a345b3-de98-5d2b-a5d3-14cd9215e700"
 version = "2.36.0+0"
 
-[[deps.LightXML]]
-deps = ["Libdl", "XML2_jll"]
-git-tree-sha1 = "3a994404d3f6709610701c7dabfc03fed87a81f8"
-uuid = "9c8b4983-aa76-5018-a973-4c85ecc9e179"
-version = "0.9.1"
-
 [[deps.LimitedLDLFactorizations]]
 deps = ["AMD", "LinearAlgebra", "SparseArrays"]
 git-tree-sha1 = "07b3c94ba4decdd855770beddeab9187be03d6b8"
@@ -917,10 +911,10 @@ uuid = "7a12625a-238d-50fd-b39a-03d52299707e"
 version = "3.11.1"
 
 [[deps.LinearOperators]]
-deps = ["FastClosures", "LDLFactorizations", "LinearAlgebra", "Printf", "SparseArrays", "TimerOutputs"]
-git-tree-sha1 = "a58ab1d18efa0bcf9f0868c6d387e4126dad3e72"
+deps = ["FastClosures", "LinearAlgebra", "Printf", "Requires", "SparseArrays", "TimerOutputs"]
+git-tree-sha1 = "ae5d90280094348c32fda8bc8b5a88bb16514d43"
 uuid = "5c8ed15e-5a4c-59e4-a42b-c7e8811fb125"
-version = "2.5.2"
+version = "2.8.0"
 
 [[deps.LocalFilters]]
 git-tree-sha1 = "33d7c1c2575aea82c26b9d39abce5daf320a710f"
@@ -950,9 +944,9 @@ version = "0.5.5"
 
 [[deps.LowRankMatrices]]
 deps = ["FillArrays", "LinearAlgebra"]
-git-tree-sha1 = "44c5a4f2669a78c7947de06985da1eadacd1b085"
+git-tree-sha1 = "7c8664b2f3d5c3d9b77605c03d53b18813e79b0f"
 uuid = "e65ccdef-c354-471a-8090-89bec1c20ec3"
-version = "1.0.0"
+version = "1.0.1"
 
 [[deps.LoweredCodeUtils]]
 deps = ["JuliaInterpreter"]
@@ -995,16 +989,10 @@ uuid = "3a97d323-0669-5f0c-9066-3539efd106a3"
 version = "4.1.1+1"
 
 [[deps.MRIBase]]
-deps = ["AbstractNFFTs", "Infiltrator", "LinearAlgebra", "NFFTTools", "Revise"]
-path = "/root/.julia/dev/MRIReco/MRIBase"
+deps = ["AbstractNFFTs", "LinearAlgebra", "NFFTTools"]
+git-tree-sha1 = "9b457412e50393195a0c51a54eda6daf273d7d87"
 uuid = "f7771a9a-6e57-4e71-863b-6e4b6a2f17df"
 version = "0.3.3"
-
-[[deps.MRICoilSensitivities]]
-deps = ["FFTW", "FLoops", "LinearAlgebra", "MRIBase", "Printf", "Reexport"]
-path = "/root/.julia/dev/MRIReco/MRICoilSensitivities"
-uuid = "c57eb701-aafc-44a2-a53c-128049758959"
-version = "0.1.1"
 
 [[deps.MRIFieldmaps]]
 deps = ["ImageGeoms", "LimitedLDLFactorizations", "LinearAlgebra", "SparseArrays", "StatsBase"]
@@ -1012,35 +1000,19 @@ git-tree-sha1 = "a9f205176620b84a46c8dbe2c3d32832e3ec8bd6"
 uuid = "5af58b90-8a55-4daf-adb4-2008a66a38cf"
 version = "0.0.1"
 
-[[deps.MRIFiles]]
-deps = ["FileIO", "HDF5", "Infiltrator", "LightXML", "LinearAlgebra", "MRIBase", "Printf", "Reexport"]
-path = "/root/.julia/dev/MRIReco/MRIFiles"
-uuid = "5a6f062f-bf45-497d-b654-ad17aae2a530"
-version = "0.1.6"
-
 [[deps.MRIOperators]]
-deps = ["Distributions", "FLoops", "Infiltrator", "LinearAlgebra", "LowRankApprox", "MRIBase", "NFFT", "Printf", "Reexport", "SparsityOperators", "SphericalHarmonicExpansions", "StatsBase"]
-path = "/root/.julia/dev/MRIReco/MRIOperators"
+deps = ["Distributions", "FLoops", "LinearAlgebra", "LowRankApprox", "MRIBase", "NFFT", "Printf", "Reexport", "SparsityOperators", "StatsBase"]
+git-tree-sha1 = "1579edabffc9940add7d4cdb741020f47ef9949a"
 uuid = "fb1137e3-90a6-46ce-a672-6e1e53d120f2"
-version = "0.1.2"
+version = "0.1.3"
 
 [[deps.MRIReco]]
 deps = ["AxisArrays", "FLoops", "Infiltrator", "LinearAlgebra", "MRIBase", "MRIOperators", "PrecompileTools", "ProgressMeter", "Random", "Reexport", "RegularizedLeastSquares", "Unitful"]
-path = "/root/.julia/dev/MRIReco"
+git-tree-sha1 = "e6072768d6c503a406fd71cd2fe05d88fa904a97"
+repo-rev = "master"
+repo-url = "https://github.com/monreal93/MRIReco_amm.git"
 uuid = "bdf86e05-2d2b-5731-a332-f3fe1f9e047f"
 version = "0.7.1"
-
-[[deps.MRISampling]]
-deps = ["LinearAlgebra", "MRIBase", "Printf", "Random", "Reexport"]
-path = "/root/.julia/dev/MRIReco/MRISampling"
-uuid = "9be66c26-f988-4649-80fc-f4721a4a33f2"
-version = "0.1.1"
-
-[[deps.MRISimulation]]
-deps = ["Infiltrator", "LinearAlgebra", "MRIBase", "MRIOperators", "Printf", "ProgressMeter", "Reexport", "StatsBase"]
-path = "/root/.julia/dev/MRIReco/MRISimulation"
-uuid = "8988da37-ea20-4fa6-9af7-8a6f6f9a8970"
-version = "0.1.1"
 
 [[deps.MacroTools]]
 deps = ["Markdown", "Random"]
@@ -1135,14 +1107,14 @@ uuid = "d8a4904e-b15c-11e9-3269-09a3773c0cb0"
 version = "1.4.0"
 
 [[deps.NFFT]]
-deps = ["AbstractNFFTs", "BasicInterpolators", "Distributed", "FFTW", "FLoops", "LinearAlgebra", "PrecompileTools", "Printf", "Random", "Reexport", "SparseArrays", "SpecialFunctions"]
-path = "/root/.julia/dev/NFFT"
+deps = ["AbstractNFFTs", "BasicInterpolators", "Distributed", "FFTW", "FLoops", "LinearAlgebra", "Printf", "Random", "Reexport", "SnoopPrecompile", "SparseArrays", "SpecialFunctions"]
+git-tree-sha1 = "93a5f32dd6cf09456b0b81afcb8fc29f06535ffd"
 uuid = "efe261a4-0d2b-5849-be55-fc731d526b0d"
 version = "0.13.3"
 
 [[deps.NFFTTools]]
-deps = ["AbstractFFTs", "AbstractNFFTs", "FFTW", "Infiltrator", "LinearAlgebra"]
-path = "/root/.julia/dev/NFFT/NFFTTools"
+deps = ["AbstractFFTs", "AbstractNFFTs", "FFTW", "LinearAlgebra"]
+git-tree-sha1 = "d6a68b7ffbd50b4c99e514a1a6fb8ce84f6e247e"
 uuid = "7424e34d-94f7-41d6-98a0-85abaf1b6c91"
 version = "0.2.6"
 
@@ -1331,9 +1303,14 @@ uuid = "9abbd945-dff8-562f-b5e8-e1ebf5ef1b79"
 
 [[deps.ProgressMeter]]
 deps = ["Distributed", "Printf"]
-git-tree-sha1 = "00099623ffee15972c16111bcf84c58a0051257c"
+git-tree-sha1 = "763a8ceb07833dd51bb9e3bbca372de32c0605ad"
 uuid = "92933f4c-e287-5a05-a399-4b506db050ca"
-version = "1.9.0"
+version = "1.10.0"
+
+[[deps.PtrArrays]]
+git-tree-sha1 = "077664975d750757f30e739c870fbbdc01db7913"
+uuid = "43287f4e-b6f4-7ad1-bb20-aadabca52c3d"
+version = "1.1.0"
 
 [[deps.QSM]]
 deps = ["CPUSummary", "FFTW", "FastPow", "IrrationalConstants", "LinearAlgebra", "LinearMaps", "MacroTools", "NIfTI", "Polyester", "PolyesterWeave", "Printf", "SLEEFPirates", "Static", "StaticArrays", "ThreadingUtilities", "TiledIteration"]
@@ -1349,9 +1326,9 @@ version = "5.15.3+2"
 
 [[deps.QuadGK]]
 deps = ["DataStructures", "LinearAlgebra"]
-git-tree-sha1 = "9ebcd48c498668c7fa0e97a9cae873fbee7bfee1"
+git-tree-sha1 = "9b23c31e76e333e6fb4c1595ae6afa74966a729e"
 uuid = "1fd47b50-473d-5c70-9696-f719f8f3bcdc"
-version = "2.9.1"
+version = "2.9.4"
 
 [[deps.Quaternions]]
 deps = ["LinearAlgebra", "Random", "RealDot"]
@@ -1438,10 +1415,10 @@ uuid = "79098fc4-a85e-5d69-aa6a-4863f24498fa"
 version = "0.7.1"
 
 [[deps.Rmath_jll]]
-deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
-git-tree-sha1 = "6ed52fdd3382cf21947b15e8870ac0ddbff736da"
+deps = ["Artifacts", "JLLWrappers", "Libdl"]
+git-tree-sha1 = "d483cd324ce5cf5d61b77930f0bbd6cb61927d21"
 uuid = "f50d1b31-88e8-58de-be2c-1cc44531875f"
-version = "0.4.0+0"
+version = "0.4.2+0"
 
 [[deps.Rotations]]
 deps = ["LinearAlgebra", "Quaternions", "Random", "StaticArrays", "Statistics"]
@@ -1584,9 +1561,9 @@ version = "0.33.21"
 
 [[deps.StatsFuns]]
 deps = ["ChainRulesCore", "HypergeometricFunctions", "InverseFunctions", "IrrationalConstants", "LogExpFunctions", "Reexport", "Rmath", "SpecialFunctions"]
-git-tree-sha1 = "f625d686d5a88bcd2b15cd81f18f98186fdc0c9a"
+git-tree-sha1 = "cef0472124fab0695b58ca35a77c6fb942fdab8a"
 uuid = "4c63d2b9-4356-54db-8cca-17b64c39e42c"
-version = "1.3.0"
+version = "1.3.1"
 
 [[deps.StrideArraysCore]]
 deps = ["ArrayInterface", "CloseOpenIntervals", "IfElse", "LayoutPointers", "ManualMemory", "SIMDTypes", "Static", "ThreadingUtilities"]
@@ -1649,9 +1626,9 @@ version = "0.3.1"
 
 [[deps.TimerOutputs]]
 deps = ["ExprTools", "Printf"]
-git-tree-sha1 = "f548a9e9c490030e545f72074a41edfd0e5bcdd7"
+git-tree-sha1 = "5a13ae8a41237cff5ecf34f73eb1b8f42fff6531"
 uuid = "a759f4b9-e2f1-59dc-863e-4aeb61b1ea8f"
-version = "0.5.23"
+version = "0.5.24"
 
 [[deps.ToeplitzMatrices]]
 deps = ["AbstractFFTs", "DSP", "LinearAlgebra", "StatsBase"]
