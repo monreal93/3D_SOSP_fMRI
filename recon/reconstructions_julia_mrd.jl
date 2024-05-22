@@ -5,7 +5,7 @@ Pkg.activate("./recon/")
 
 using Revise
 using Infiltrator
-using MRIReco, MRIFiles, MRICoilSensitivities, MRIFieldmaps
+using MRIReco # , MRIFiles, MRICoilSensitivities, MRIFieldmaps
 using MAT, NIfTI , JLD #, MriResearchTools
 using StatsBase: mean
 using Unitful: s, ustrip
@@ -25,8 +25,6 @@ include("./functions/fn_PrepareMRD.jl")
 include("./functions/fn_ReconstructCartesian.jl")
 include("./functions/fn_RawDataCorrection.jl")
 include("./functions/fn_CalculateSensitivityOffresonanceMaps.jl")
-include("./functions/fn_calculateSphericalHarmonics.jl")
-include("./functions/fn_motionCorrection.jl")
 
 params = Dict{Symbol, Any}()
 params[:do_pi_recon] = true             # Perform PI reconstruction or direct recon
