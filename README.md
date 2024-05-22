@@ -64,7 +64,12 @@ This repository houses the sequence and analysis scripts for the paper **Combini
    using Pkg
    Pkg.activate("./recon/")
    ```
-9) Instantiate (download and install packages):
+8) Add modified version of MRIReco.jl
+   ```julia
+   dev https://github.com/monreal93/MRIReco_amm.git
+   dev MRIOperators
+   ```
+10) Instantiate (download and install packages):
    ```julia
    Pkg.instantiate()
    ```
@@ -76,5 +81,9 @@ This repository houses the sequence and analysis scripts for the paper **Combini
    siemens_to_ismrmrd -f ./data/sample/raw/twix/sample.dat -o ./data/sample/ismrmd/3d/sample.h5
    siemens_to_ismrmrd -f ./data/sample/raw/twix/b0_sample_fieldmap.dat -o ./data/sample/ismrmd/3d/b0_sample_fieldmap.h5
    ```
-3) ``` 
-  
+3) Open VScode and add folder `/usr/share/sosp_vaso/` to workspace.
+4) Open the julia REPL (CTRL+SHIFT+P) `Start julia REPL` and type
+   ```julia
+   cd("/usr/share/sosp_vaso")
+   include("./recon/reconstructions_julia_mrd.jl")
+  ```
