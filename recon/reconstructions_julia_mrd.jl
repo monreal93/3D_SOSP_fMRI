@@ -5,7 +5,7 @@ Pkg.activate("./recon/")
 
 using Revise
 using Infiltrator
-using MRIReco # , MRIFiles, MRICoilSensitivities, MRIFieldmaps
+using MRIReco , MRIFiles, MRICoilSensitivities, MRIFieldmaps
 using MAT, NIfTI , JLD #, MriResearchTools
 using StatsBase: mean
 using Unitful: s, ustrip
@@ -28,12 +28,12 @@ include("./functions/fn_CalculateSensitivityOffresonanceMaps.jl")
 
 params = Dict{Symbol, Any}()
 params[:do_pi_recon] = true             # Perform PI reconstruction or direct recon
-params[:do_b0_corr] = false 
+params[:do_b0_corr] = true 
 params[:do_k0_corr] = false              # Perform K0 demodulation of raw data, only works with sk trajectory
 params[:do_rDORK_corr] = false          
 params[:do_t2s_corr] = false
 params[:is2d] = false
-params[:rep_recon] = 0                     # Range of rep to recon, 0 for all rep, ex. (5:5)- rep 5 
+params[:rep_recon] = 5:6                     # Range of rep to recon, 0 for all rep, ex. (5:5)- rep 5 
 params[:traj_type] = "nom"                 # Trajectory type nominal="nom",skope="sk",poet = "poet", corrected = "nom_corr"
 params[:save_ph] = false                       # Save phase of recon as nifti
 params[:mcorr] = ""           # Motion correction with navigators "_mCorr"
@@ -41,7 +41,7 @@ params[:recon_order] =  1                  # Higher order recon (2,3)
 
 # Some parameters3
 params[:scan] = "sample"            # For now: if multipe echos, include _e1.. _e2..
-params[:scan_b0] = "sample_fieldmap"           # Name of the ME-GRE to use for CS and B0map
+params[:scan_b0] = "sample"           # Name of the ME-GRE to use for CS and B0map
 params[:directory] = "sample"        # directory where the data is stored
 
 path_tmp = string(pwd(),'/')
@@ -296,9 +296,6 @@ end
 
         # Create AcqData object
         acqData = AcquisitionData(ks_traj,kdata; encodingSize=(Int(params_pulseq["gen"]["ro_samples"]*params_pulseq["spi"]["interl"]),1,Int(params_pulseq["gen"]["n_ov"][3])), fov=Tuple(params_pulseq["gen"]["fov"]))
-        
-        @info("Stop... Before recon...")
-        @infiltrate
 
         # Reconstruction
         @info(string("Reconstructing Repetition # ",i_rep))
