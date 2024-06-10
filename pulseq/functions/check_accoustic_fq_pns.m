@@ -6,7 +6,7 @@ function check_accoustic_fq_pns(seq,params)
     gradients = gradients(1:2,:);               % taking only gx and gy
 
     % Full sequence (all readouts)
-    time = linspace(0,seq.duration(),size(gradients,2)).*1e6; % Full sequence
+    time = (0:size(gradients,2)-1).*params.gen.lims.adcRasterTime.*1e8;
     
 %     % Only 1 readout
 %     gradients = gradients(:,1:floor(length(gradients)/params.gen.n_ov(3)));   % 1 readout
