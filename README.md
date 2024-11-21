@@ -1,5 +1,5 @@
 # 3D_SOSP_fMRI
-This repository houses the sequence and analysis scripts for the paper **Combining the benefits of 3D acquisitions and spiral readouts for VASO fMRI at UHF**
+This repository houses the sequence and analysis scripts for the paper **Combining the benefits of 3D acquisitions and spiral readouts for VASO fMRI at UHF** [https://doi.org/10.1162/imag_a_00308]
 
 # Sequence (pulseq):
 ## Intial configuration steps:
